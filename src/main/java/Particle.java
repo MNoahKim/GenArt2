@@ -54,7 +54,7 @@ public class Particle {
     public void updateParticle(){
         angle += angularSpeed;
         x = (int)(centerX + orbitRadius * Math.cos(angle));
-        y = (int)(centerX + orbitRadius * Math.sin(angle));
+        y = (int)(centerY + orbitRadius * Math.sin(angle));
     }
 
 //    public void updateParticle(){
