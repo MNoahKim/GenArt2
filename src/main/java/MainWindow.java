@@ -11,7 +11,7 @@ public class MainWindow extends JPanel {
     private final int WINDOW_WIDTH = 1920;
     private final int WINDOW_HEIGHT = 1080;
 
-    private final int NUM_PARTICLES = 100;
+    private final int NUM_PARTICLES = 1;
 
     //Particle p;
 

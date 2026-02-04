@@ -15,17 +15,18 @@ public class Particle {
     private int centerY;
 
     // initial setup of the particle
-    public Particle(int x, int y, int radius, Color color, int windowWidth, int windowHeight){
+    public Particle(int x, int y, int radius, Color color, int windowWidth, int windowHeight) {
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.color = color;
 
         xDirection = 1;
-        xSpeed = (int)(2 + Math.random() * (5 - 2));
+        xSpeed = (int) (2 + Math.random() * (5 - 2));
 
         yDirection = 1;
-        ySpeed = (int)(2 + Math.random() * (5 - 2));
+        ySpeed = (int) (2 + Math.random() * (5 - 2));
+
 
         width = windowWidth;
         height = windowHeight;
@@ -34,29 +35,46 @@ public class Particle {
         centerY = randInt(0, windowHeight);
         angle = randInt(0, 50);
         angularSpeed = randDouble(0.01, 0.5);
-        orbitRadius = randInt(10, 400);
+        orbitRadius = randInt(10, 40);
     }
 
     public int randInt(int min, int max) {
         return (int) (min + Math.random() * (max - min));
     }
 
-    public double randDouble (double min, double max) {
+    public double randDouble(double min, double max) {
         return (min + Math.random() * (max - min));
     }
 
-    public void draw(Graphics2D g){
+    public void draw(Graphics2D g) {
         g.setColor(color);
-        g.fillOval(x, y, radius*2, radius*2);
+        g.fillOval(x, y, radius * 2, radius * 2);
     }
 
+    public void updateParticle() {
+        if (Math.random() >= .99 || x <= 0 || x + (radius * 2) > width) {
+            xDirection *= -1;
+        }
+        x += xSpeed * xDirection;
 
-    public void updateParticle(){
-        angle += angularSpeed;
-        x = (int)(centerX + orbitRadius * Math.cos(angle));
-        y = (int)(centerY + orbitRadius * Math.sin(angle));
+        if (Math.random() >= .99 || y <= 0 || y + (radius * 2) >= height) {
+            yDirection *= -1;
+        }
+        y += ySpeed * yDirection;
+
+        if (Math.random() >= .999) {
+            angle += angularSpeed;
+            x = (int) (x + orbitRadius * Math.cos(angle));
+            y = (int) (y + orbitRadius * Math.sin(angle));
+        }
     }
+}
 
+//    public void updateParticle(){
+//       angle += angularSpeed;
+//        x = (int)(centerX + orbitRadius * Math.cos(angle));
+//        y = (int)(centerY + orbitRadius * Math.sin(angle));
+//    }
 //    public void updateParticle(){
 //        if (Math.random() >= .99 || x <= 0 || x + (radius * 2) > width) {
 //            xDirection *= -1;
@@ -70,4 +88,3 @@ public class Particle {
 //
 //
 //    }
-}
