@@ -34,7 +34,7 @@ public class Particle {
         centerY = randInt(0, windowHeight);
         angle = randInt(0, 50);
         angularSpeed = randDouble(0.01, 0.5);
-        orbitRadius = randInt(10, 40);
+        orbitRadius = randInt(10, 400);
     }
 
     public int randInt(int min, int max) {
