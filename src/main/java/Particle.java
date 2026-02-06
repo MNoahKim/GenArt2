@@ -34,7 +34,7 @@ public class Particle {
         centerX = randInt(0, windowWidth);
         centerY = randInt(0, windowHeight);
         angle = randInt(0, 50);
-        angularSpeed = randDouble(0.01, 0.5);
+        angularSpeed = randDouble(100, 200);
         orbitRadius = randInt(10, 40);
     }
 
@@ -62,10 +62,20 @@ public class Particle {
         }
         y += ySpeed * yDirection;
 
-        if (Math.random() >= .999) {
+        if (Math.random() >= .99) {
             angle += angularSpeed;
             x = (int) (x + orbitRadius * Math.cos(angle));
             y = (int) (y + orbitRadius * Math.sin(angle));
+        }
+    }
+
+    public void linearMotion() {
+        if (Math.random() >= .99 || x <= 0 || x + (radius * 2) > width) {
+            xDirection *= -1;
+        }
+
+        if (Math.random() >= .99 || y <= 0 || y + (radius * 2) >= height) {
+            yDirection *= -1;
         }
     }
 }
