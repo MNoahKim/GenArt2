@@ -16,7 +16,7 @@ public class MainWindow extends JPanel {
     private final int SPAWN_DISTANCE = 40;
     private final int SPAWN_TIMER = 1000;
     private final int SPAWN_COUNT = 5;
-    private final int MAX_PARTICLES = 250;
+    private final int MAX_PARTICLES = 500;
 
     //Particle p;
 

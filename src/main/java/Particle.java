@@ -77,23 +77,23 @@ public class Particle {
             }
         }
 
-        if (Math.random() >= .6) {
+        if (Math.random() >= .7) {
             xSpeed = (xSpeed + randInt(1,6));
         }
 
-        if (Math.random() >= .3){
-            if (xSpeed > 6){
-                xSpeed = (xSpeed - randInt(1,6));
+        if (Math.random() >= .5){
+            if (xSpeed > 9){
+                xSpeed = (xSpeed - randInt(5,9));
             }
         }
 
-        if (Math.random() >= .3){
-            if (ySpeed > 6){
-                ySpeed = (ySpeed - randInt(1,6));
+        if (Math.random() >= .5){
+            if (ySpeed > 9){
+                ySpeed = (ySpeed - randInt(5,9));
             }
         }
 
-        if (Math.random() >= .6) {
+        if (Math.random() >= .7) {
             ySpeed = (ySpeed + randInt(1,6));
         }
 
