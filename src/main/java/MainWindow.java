@@ -8,15 +8,17 @@ public class MainWindow extends JPanel {
     // 1 initial setup of window
     // 1 Panel is the Canvas where we will draw the Art
     // extend makes the MainWindow object a drawable object
-    private final int WINDOW_WIDTH = 1920;
-    private final int WINDOW_HEIGHT = 1080;
+    private final int WINDOW_WIDTH = 2560;
+    private final int WINDOW_HEIGHT = 1440;
 
-    private final int NUM_PARTICLES = 4;
+    private final int NUM_PARTICLES = 10;
 
     private final int SPAWN_DISTANCE = 40;
     private final int SPAWN_TIMER = 1000;
     private final int SPAWN_COUNT = 5;
-    private final int MAX_PARTICLES = 500;
+    private final int MAX_PARTICLES = 5000;
+
+    private final int DEATH_TIMER = 5000;
 
     //Particle p;
 
@@ -33,7 +35,7 @@ public class MainWindow extends JPanel {
             int x = randInt(0, WINDOW_WIDTH);
             int y = randInt(0, WINDOW_HEIGHT);
             //create a local radius variable, and assign a value between 5-15
-            int radius = randInt(20,30);
+            int radius = randInt(10,20);
             //create RGB values between 0-255 to assign a random Color to new Color
             int colorR = randInt(0, 255);
             int colorG = randInt(0, 255);
@@ -115,7 +117,29 @@ public class MainWindow extends JPanel {
         }
         particles.addAll(particlesToAdd);
 
+        for (int i = particles.size() - 1; i >= 0; i--){
+            Particle p = particles.get(i);
+            if (p.shouldDie(now, DEATH_TIMER)){
+                particles.remove(p);
+            }
+        }
 
+        if (particles.size() > MAX_PARTICLES || particles.isEmpty()){
+            particles.clear();
+
+            for (int i = 0; i < NUM_PARTICLES; i++) {
+                //min + Math.random() * (max-min)
+                int x = randInt(0, WINDOW_WIDTH);
+                int y = randInt(0, WINDOW_HEIGHT);
+                //create a local radius variable, and assign a value between 5-15
+                int radius = randInt(10,20);
+                //create RGB values between 0-255 to assign a random Color to new Color
+                int colorR = randInt(0, 255);
+                int colorG = randInt(0, 255);
+                int colorB = randInt(0, 255);
+                particles.add(new Particle(x, y, radius, new Color(colorR, colorG, colorB), WINDOW_WIDTH, WINDOW_HEIGHT, SPAWN_TIMER));
+            }
+        }
     }
 
     private boolean isTouching(Particle a, Particle b){
